@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -29,6 +30,15 @@ public class EntryFormController {
         item.setPassword(entryItem.getPassword());
 
         entryItemService.save(entryItem);
+        return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteEntryItem(@PathVariable("id") Long id, Model model) {
+        EntryItem entryItem = entryItemService
+                .getById(id)
+                .orElseThrow(() -> new IllegalArgumentException("EntryItem id: " + id + " not found"));
+        entryItemService.delete(entryItem);
         return "redirect:/";
     }
 }
