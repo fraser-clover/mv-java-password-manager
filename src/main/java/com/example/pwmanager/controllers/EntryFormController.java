@@ -25,6 +25,9 @@ public class EntryFormController {
         EntryItem item = new EntryItem();
         item.setUrl(entryItem.getUrl());
 
+        item.setUsername(entryItem.getUsername());
+        item.setPassword(entryItem.getPassword());
+
         entryItemService.save(entryItem);
         return "redirect:/";
     }

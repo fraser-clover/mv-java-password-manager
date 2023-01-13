@@ -28,6 +28,20 @@
                         id="url"
                         placeholder="URL"
                     >
+                    <label for="username">USERNAME</label>
+                    <input class="form-control"
+                           type="text"
+                           th:field="*{username}"
+                           id="username"
+                           placeholder="Username"
+                    >
+                    <label for="password">PASSWORD</label>
+                    <input class="form-control"
+                           type="text"
+                           th:field="*{password}"
+                           id="password"
+                           placeholder="Password"
+                    >
                     <button type="submit" class="btn btn-outline-success">
                         <i class="bi bi-plus-square-fill"></i> Add Entry
                     </button>
