@@ -7,16 +7,43 @@
     <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" th:rel="stylesheet"/>
     <style>
 
-        *{
-        background-color:black;
+    @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500&family=Righteous&display=swap');
+
+        body{
+            background-color: #001233;
+            color:#979dac ;
         }
+
+        .table-bordered {
+            background-color:#7d8597;
+            color:#001845;
+        }
+        .main-title {
+            font-family: 'Righteous', cursive;
+            font-size: 60px;
+        }
+
+        .table th {
+            font-family: 'Chakra Petch', sans-serif;
+            font-size:20px;
+
+        }
+
+
+
+
+
+
+
+
+
 
 
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Password Manager</h1>
+    <h1 class="main-title">Password Manager</h1>
     <hr/>
 
     <table class="table table-bordered table-striped">
