@@ -22,7 +22,7 @@ public class EntryFormController {
     }
 
     @PostMapping("/entry")
-    public String createEntryItem (@Valid EntryItem entryItem, BindingResult result, Model model){
+    public String createEntryItem(@Valid EntryItem entryItem, BindingResult result, Model model) {
         EntryItem item = new EntryItem();
         item.setUrl(entryItem.getUrl());
 
@@ -39,6 +39,29 @@ public class EntryFormController {
                 .getById(id)
                 .orElseThrow(() -> new IllegalArgumentException("EntryItem id: " + id + " not found"));
         entryItemService.delete(entryItem);
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        EntryItem entryItem = entryItemService
+                .getById(id)
+                .orElseThrow(() -> new IllegalArgumentException("EntryItem id: " + id + " not found"));
+        model.addAttribute("entry", entryItem);
+        return "edit-entry-item";
+    }
+
+    @PostMapping("/entry/{id}")
+    public String updateEntryItem(@PathVariable("id") Long id, @Valid EntryItem entryItem, BindingResult result, Model model) {
+        EntryItem item = entryItemService
+                .getById(id)
+                .orElseThrow(() -> new IllegalArgumentException("EntryItem id: " + id + " not found"));
+
+        item.setUrl(entryItem.getUrl());
+        item.setUsername(entryItem.getUsername());
+        item.setPassword(entryItem.getPassword());
+
+        entryItemService.save(item);
         return "redirect:/";
     }
 }
