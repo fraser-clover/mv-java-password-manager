@@ -10,7 +10,7 @@ import java.time.Instant;
 @Setter
 @Entity
 
-@Table(name = "todo_items")
+@Table(name = "entry_items")
 public class EntryItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

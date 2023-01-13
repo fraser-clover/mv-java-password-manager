@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div>
+    <h1>Password Manager</h1>
+    <hr/>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Actions</th>
+                <th>Id</th>
+                <th>URL</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="item : ${entryItems}">
+                <td>&nbsp;</td>
+                <td th:text="${item.id}"></td>
+                <td th:text="${item.url}"></td>
+                <td th:text="${item.username}"></td>
+                <td th:text="${item.password}"></td>
+                <td th:text="${item.createdAt}"></td>
+                <td th:text="${item.updatedAt}"></td>
+
+            </tr>
+        </tbody>
+
+
+
+    </table>
+</div>
+</body>
+</html>
