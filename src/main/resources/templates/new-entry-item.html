@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link th:href="@{/webjars/bootstrap/5.2.3/css/bootstrap.min.css}" th:rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-2">
+            <p>
+                <a class="btn btn-outline-success" href="/">
+                <i class="bi bi-arrow-left-square-fill"></i>
+                    Back
+                </a>
+            </p>
+        </div>
+        <div class="col-6">
+            <h2>Add a New Entry Item</h2>
+            <form action="#" th:action="@{/entry}" th:object="${entryItem}" method="POST">
+                <div class="form-group">
+                    <label for="url">URL</label>
+                    <input class="form-control"
+                        type="text"
+                        th:field="*{url}"
+                        id="url"
+                        placeholder="URL"
+                    >
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="bi bi-plus-square-fill"></i> Add Entry
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<script th:src="@{/webjars/bootstrap/5.2.3/js/bootstrap.min.js}"></script>
+</body>
+</html>
