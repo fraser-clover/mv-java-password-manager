@@ -1,14 +1,31 @@
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        generatePassPhrase();
         System.out.print(generatePassword());
     }
 
     public static String generatePassword() {
         System.out.println("Hello, World! Welcome to the Password Generator!");
+        System.out.println(
+                "\n Enter 0 if you would like a Password (Example: fnoh90j34fmNDM09W)" +
+                "\n Enter 1 if you would like a Passphrase (Example: metaxylem-earflap-crutch)");
+
+        Scanner passwordOrPassphraseScanner = new Scanner(System.in);
+        if(passwordOrPassphraseScanner.nextInt() == 1){
+           return generatePassPhrase();
+
+        }
+
         String[] characters = {
                 "0",
                 "1",
@@ -299,7 +316,7 @@ public class Main {
             }
         }
 
-        System.out.println(includedLetters.size());
+
 
 
         for(int i = 0; i < passwordLength; i++){
@@ -309,11 +326,37 @@ public class Main {
         // will generate randomized string of lowercase letters as default
         return "\nHere is your password: \n\n" + res.toString();
 
-// TODO: 1/14/23 make checks to make sure it includes at least one of the selected things if all are true, since probability is smaller
-// TODO: 1/14/23 Make it not ask more than once for desired length
-// TODO: 1/14/23 Add more tests to test the length of strings if only lowercase letters, and with other additions/combinations
+        // TODO: 1/14/23 make checks to make sure it includes at least one of the selected things if all are true, since probability is smaller
+        // TODO: 1/14/23 Make it not ask more than once for desired length
+        // TODO: 1/14/23 Add more tests to test the length of strings if only lowercase letters, and with other additions/combinations
 
 
+    }
+
+    public static String generatePassPhrase(){
+        StringBuilder res = new StringBuilder();
+        try {
+            for (int i = 0; i < 3 ; i++) {
+            URL u = new URL("https://random-word-api.herokuapp.com/word");
+            HttpURLConnection hr = (HttpURLConnection) u.openConnection();
+
+            if(hr.getResponseCode() == 200){
+
+                    InputStream im = hr.getInputStream();
+
+                    BufferedReader br = new BufferedReader( new InputStreamReader(im));
+                    String line = br.readLine();
+
+                    res.append("-").append(line.substring(2, line.length() - 2));
+
+            }
+
+        }
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        return "Here is your passphrase: " + res.substring(1);
     }
 
 }

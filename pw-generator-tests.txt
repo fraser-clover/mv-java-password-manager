@@ -19,21 +19,21 @@ describe("variable declarations", () => {
 describe("password length and generation", () => {
     test("should return a length of 26 if includedCharacters only has lowercase letters", () => {
         // TO DO
-        expect(includedCharacters.length).toBe(26);
+        expect(includedCharacters.size()).toBe(26);
     }
 
     test("should return a length of 37 if includedCharacters only has lowercase letters and special characters", () => {
          // TO DO
-         expect(includedCharacters.length).toBe(37);
+         expect(includedCharacters.size()).toBe(37);
     }
 
     test("should blah blah", () => {
          // TO DO
-         expect(includedCharacters.length).toBe(47);
+         expect(includedCharacters.size()).toBe(47);
     }
 
      test("should return a length of 73 if includedCharacters has all character types", () => {
          // TO DO
-         expect(includedCharacters.length).toBe(73);
+         expect(includedCharacters.size()).toBe(73);
      }
 });
