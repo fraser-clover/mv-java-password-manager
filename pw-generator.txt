@@ -10,15 +10,15 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        generatePassPhrase();
+
         System.out.print(generatePassword());
     }
 
     public static String generatePassword() {
         System.out.println("Hello, World! Welcome to the Password Generator!");
         System.out.println(
-                "\n Enter 0 if you would like a Password (Example: fnoh90j34fmNDM09W)" +
-                "\n Enter 1 if you would like a Passphrase (Example: metaxylem-earflap-crutch)");
+                "\n Enter 0 below if you would like a Password (Example: fnoh90j34fmNDM09W)" +
+                "\n Enter 1 below if you would like a Passphrase (Example: metaxylem-earflap-crutch)\n");
 
         Scanner passwordOrPassphraseScanner = new Scanner(System.in);
         if(passwordOrPassphraseScanner.nextInt() == 1){
@@ -334,9 +334,24 @@ public class Main {
     }
 
     public static String generatePassPhrase(){
+        int passphraseLength = 3;
+        System.out.println("\nDo you have a preference for how many words are in the passphrase?\n");
+        System.out.println("Enter true if you would like to specify a number of words to include \n" +
+                "Enter false if you do not mind the length (will default to a length of 3)\n");
+        Scanner lengthPreferenceInquiry = new Scanner(System.in);
+
+
+        if(lengthPreferenceInquiry.nextBoolean()){
+            System.out.println("\nPlease enter your preferred length below (Example: 5) \n");
+            Scanner lengthPreference = new Scanner(System.in);
+            passphraseLength = lengthPreference.nextInt();
+        }
+
+        System.out.println("\n Generating your passphrase...\n");
+
         StringBuilder res = new StringBuilder();
         try {
-            for (int i = 0; i < 3 ; i++) {
+            for (int i = 0; i < passphraseLength ; i++) {
             URL u = new URL("https://random-word-api.herokuapp.com/word");
             HttpURLConnection hr = (HttpURLConnection) u.openConnection();
 
